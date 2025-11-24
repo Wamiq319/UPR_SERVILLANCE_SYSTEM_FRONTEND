@@ -22,8 +22,8 @@ const LoginPage = () => {
       const stored = localStorage.getItem("user");
       if (!stored) return;
 
-      // const user = JSON.parse(stored);
-      // if (user) navigate("/dashboard");
+      const user = JSON.parse(stored);
+      if (user) navigate("/admin/dashboard");
     } catch (err) {
       console.error("Error parsing user:", err);
     }

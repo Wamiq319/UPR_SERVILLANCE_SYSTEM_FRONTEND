@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, Home, Users, Settings } from "lucide-react";
+import { Menu, X, LogOut, Home, Users, Settings, Database } from "lucide-react";
 import Logo from "@/assets/LOGO.png";
 import { Button } from "@/components";
 
 const SidebarMenus = [
   { label: "Dashboard", path: "/admin/dashboard", Icon: Home },
-  { label: "Users", path: "/users", Icon: Users },
+  { label: "Records", path: "/admin/records", Icon: Database },
   { label: "Settings", path: "/settings", Icon: Settings },
 ];
 

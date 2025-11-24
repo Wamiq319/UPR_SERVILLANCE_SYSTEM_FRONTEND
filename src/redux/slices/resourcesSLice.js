@@ -16,7 +16,9 @@ const prepareRequestOptions = (method, body) => {
 
   // Check if the body contains a File object (e.g., for receiptImage)
   const hasFile = Object.values(body).some(
-    (value) => value instanceof File || (Array.isArray(value) && value[0] instanceof File)
+    (value) =>
+      value instanceof File ||
+      (Array.isArray(value) && value[0] instanceof File)
   );
 
   if (hasFile) {
@@ -29,8 +31,7 @@ const prepareRequestOptions = (method, body) => {
         } else if (Array.isArray(body[key]) && body[key][0] instanceof File) {
           // If it's an array of files (though receiptImage is single)
           body[key].forEach((file) => formData.append(key, file));
-        }
-        else {
+        } else {
           formData.append(key, body[key]);
         }
       }
@@ -135,7 +136,7 @@ export const fetchResources = createAsyncThunk(
   "resources/fetch",
   async ({ resource }, { rejectWithValue }) => {
     try {
-      const res = await fetch(`${API_URL}/api/${resource}`, {
+      const res = await fetch(`${API_URL}/${resource}`, {
         credentials: "include",
       });
       const { data, success, message } = await handleApiResponse(res);
@@ -151,7 +152,7 @@ export const fetchResourceById = createAsyncThunk(
   "resources/fetchById",
   async ({ resource, id }, { rejectWithValue }) => {
     try {
-      const res = await fetch(`${API_URL}/api/${resource}/${id}`, {
+      const res = await fetch(`${API_URL}/${resource}/${id}`, {
         credentials: "include",
       });
       const { data, success, message } = await handleApiResponse(res);
@@ -168,7 +169,7 @@ export const createResource = createAsyncThunk(
   async ({ resource, body }, { rejectWithValue }) => {
     try {
       const options = prepareRequestOptions("POST", body);
-      const res = await fetch(`${API_URL}/api/${resource}`, options);
+      const res = await fetch(`${API_URL}/${resource}`, options);
       const { data, success, message } = await handleApiResponse(res);
       return { resource, data, success, message };
     } catch (err) {
@@ -183,7 +184,7 @@ export const updateResource = createAsyncThunk(
   async ({ resource, id, body }, { rejectWithValue }) => {
     try {
       const options = prepareRequestOptions("PUT", body);
-      const res = await fetch(`${API_URL}/api/${resource}/${id}`, options);
+      const res = await fetch(`${API_URL}/${resource}/${id}`, options);
       const { data, success, message } = await handleApiResponse(res);
       return { resource, id, data, success, message };
     } catch (err) {
@@ -280,7 +281,6 @@ const resourcesSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-
 
       // --- Login ---
       .addCase(login.fulfilled, (state, action) => {

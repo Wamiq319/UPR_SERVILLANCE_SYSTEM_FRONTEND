@@ -1,5 +1,5 @@
 import { formatDate } from "@/utils";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from ".";
 
 const DataTable = ({
@@ -9,6 +9,14 @@ const DataTable = ({
   buttons = [],
   dynamicButtons,
 }) => {
+  const rowsPerPage = 5;
+  const [page, setPage] = useState(1);
+
+  // pagination logic
+  const totalPages = Math.ceil(tableData.length / rowsPerPage);
+  const startIdx = (page - 1) * rowsPerPage;
+  const currentRows = tableData.slice(startIdx, startIdx + rowsPerPage);
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 w-full overflow-x-auto">
       {heading && (
@@ -35,8 +43,8 @@ const DataTable = ({
         </thead>
 
         <tbody>
-          {tableData.length > 0 ? (
-            tableData.map((row, idx) => {
+          {currentRows.length > 0 ? (
+            currentRows.map((row, idx) => {
               const rowButtons = dynamicButtons ? dynamicButtons(row) : buttons;
 
               return (
@@ -50,7 +58,6 @@ const DataTable = ({
 
                     const value = getValue(row, col.key);
 
-                    // Status indicator using green theme
                     if (col.key === "status") {
                       const isActive = value === "active" || value === true;
                       return (
@@ -71,7 +78,6 @@ const DataTable = ({
                       );
                     }
 
-                    // Date formatting
                     if (
                       typeof value === "string" &&
                       /^\d{4}-\d{2}-\d{2}T/.test(value)
@@ -127,6 +133,54 @@ const DataTable = ({
           )}
         </tbody>
       </table>
+
+      {/* PAGINATION */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between mt-4 px-2">
+          {/* Prev */}
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className={`px-4 py-2 rounded-lg border ${
+              page === 1
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-white text-gray-700 hover:bg-gray-50"
+            }`}
+          >
+            Prev
+          </button>
+
+          {/* Page numbers */}
+          <div className="flex gap-2">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i + 1)}
+                className={`px-3 py-1 rounded-lg border ${
+                  page === i + 1
+                    ? "bg-green-600 text-white"
+                    : "bg-white hover:bg-gray-50"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+
+          {/* Next */}
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className={`px-4 py-2 rounded-lg border ${
+              page === totalPages
+                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                : "bg-white text-gray-700 hover:bg-gray-50"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

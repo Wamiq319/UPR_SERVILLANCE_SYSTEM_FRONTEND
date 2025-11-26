@@ -8,6 +8,7 @@ const SidebarMenus = [
   { label: "Dashboard", path: "/admin/dashboard", Icon: Home },
   { label: "Records", path: "/admin/records", Icon: Database },
   { label: "Attendance", path: "/admin/attendance", Icon: Settings },
+  { label: "Student Reports", path: "/admin/students_reports", Icon: Settings },
 ];
 
 const Sidebar = () => {

@@ -6,6 +6,7 @@ import {
   AdminLayout,
   RecordPage,
   AttendanceReportPage,
+  StudentSurveillanceReport,
 } from "@/pages";
 
 const AppRouter = () => {
@@ -17,6 +18,10 @@ const AppRouter = () => {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="records" element={<RecordPage />} />
           <Route path="attendance" element={<AttendanceReportPage />} />
+          <Route
+            path="students_reports"
+            element={<StudentSurveillanceReport />}
+          />
         </Route>
       </Routes>
     </Router>

@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, Home, Users, Settings, Database } from "lucide-react";
+import {
+  Menu,
+  X,
+  LogOut,
+  Home,
+  Users,
+  Settings,
+  Database,
+  BookOpen,
+} from "lucide-react";
 import Logo from "@/assets/LOGO.png";
 import { Button } from "@/components";
 
 const SidebarMenus = [
   { label: "Dashboard", path: "/admin/dashboard", Icon: Home },
   { label: "Records", path: "/admin/records", Icon: Database },
-  { label: "Attendance", path: "/admin/attendance", Icon: Settings },
-  { label: "Student Reports", path: "/admin/students_reports", Icon: Settings },
+  { label: "Attendance Reports", path: "/admin/attendance", Icon: Users },
+  { label: "Student Reports", path: "/admin/students_reports", Icon: Users },
+  { label: "Course Reports", path: "/admin/course_reports", Icon: BookOpen },
 ];
 
 const Sidebar = () => {
@@ -40,7 +50,7 @@ const Sidebar = () => {
         {/* Logo Section */}
         <div className="mb-8 text-center">
           <Link
-            to="/dashboard"
+            to="/admin/dashboard"
             className="flex flex-col items-center justify-center gap-2 text-green-600"
           >
             <div className="bg-white border border-gray-200 rounded-xl p-3 w-24 h-24 flex items-center justify-center">

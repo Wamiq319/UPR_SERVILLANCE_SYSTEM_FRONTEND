@@ -20,7 +20,7 @@ export default function DashboardPage() {
       icon: Database,
       gradient: "from-green-500 to-emerald-600",
       bgGradient: "from-green-50 to-emerald-50",
-      page: "/manage-record",
+      page: "/admin/records",
     },
     {
       title: "Start Surveillance",
@@ -28,7 +28,7 @@ export default function DashboardPage() {
       icon: Play,
       gradient: "from-blue-500 to-cyan-600",
       bgGradient: "from-blue-50 to-cyan-50",
-      page: "/start-surveillance",
+      page: "/admin/dashboard", // or replace with a dedicated surveillance page
     },
     {
       title: "Mark Attendance",
@@ -36,7 +36,7 @@ export default function DashboardPage() {
       icon: UserCheck,
       gradient: "from-orange-500 to-red-600",
       bgGradient: "from-orange-50 to-red-50",
-      page: "/mark-attendance",
+      page: "/admin/attendance",
     },
     {
       title: "Attendance Reports",
@@ -44,23 +44,23 @@ export default function DashboardPage() {
       icon: FileText,
       gradient: "from-teal-500 to-green-600",
       bgGradient: "from-teal-50 to-green-50",
-      page: "/attendance-reports",
+      page: "/admin/attendance",
     },
     {
-      title: "Surveillance Reports",
+      title: "Students Reports",
       description: "View camera logs, alerts & analytics",
       icon: Camera,
       gradient: "from-indigo-500 to-purple-600",
       bgGradient: "from-indigo-50 to-purple-50",
-      page: "/surveillance-reports",
+      page: "/admin/students_reports",
     },
     {
-      title: "System Insights",
+      title: "Course Reports",
       description: "AI-powered activity & performance analysis",
       icon: BarChart3,
       gradient: "from-violet-500 to-fuchsia-600",
       bgGradient: "from-violet-50 to-fuchsia-50",
-      page: "/system-insights",
+      page: "/admin/course_reports", // placeholder for insights page
     },
   ];
 
@@ -110,7 +110,10 @@ export default function DashboardPage() {
 
               {/* BUTTON */}
               <div>
-                <button className="px-4 py-2 rounded-lg bg-white shadow-sm border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-300 transition">
+                <button
+                  onClick={() => navigate(card.page)}
+                  className="cursor-pointer px-4 py-2 rounded-lg bg-white shadow-sm border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-300 transition"
+                >
                   Open →
                 </button>
               </div>
@@ -120,7 +123,7 @@ export default function DashboardPage() {
 
         {/* FOOTER */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-lg border border-green-100">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-lg border border-green-100 relative">
             <span className="w-3 h-3 bg-green-500 rounded-full animate-ping"></span>
             <span className="w-2 h-2 bg-green-600 rounded-full absolute"></span>
             <span className="text-sm font-medium text-gray-700">

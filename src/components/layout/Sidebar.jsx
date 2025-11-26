@@ -7,7 +7,7 @@ import { Button } from "@/components";
 const SidebarMenus = [
   { label: "Dashboard", path: "/admin/dashboard", Icon: Home },
   { label: "Records", path: "/admin/records", Icon: Database },
-  { label: "Settings", path: "/settings", Icon: Settings },
+  { label: "Attendance", path: "/admin/attendance", Icon: Settings },
 ];
 
 const Sidebar = () => {

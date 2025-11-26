@@ -19,6 +19,11 @@ const SidebarMenus = [
   { label: "Attendance Reports", path: "/admin/attendance", Icon: Users },
   { label: "Student Reports", path: "/admin/students_reports", Icon: Users },
   { label: "Course Reports", path: "/admin/course_reports", Icon: BookOpen },
+  {
+    label: "Live Attendance Reports",
+    path: "/admin/live_attendance",
+    Icon: BookOpen,
+  },
 ];
 
 const Sidebar = () => {

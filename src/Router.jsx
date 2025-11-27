@@ -9,6 +9,7 @@ import {
   StudentSurveillanceReport,
   CourseSurveillanceReport,
   LiveAttendancePage,
+  SurveillancePage,
 } from "@/pages";
 
 const AppRouter = () => {
@@ -26,6 +27,7 @@ const AppRouter = () => {
           />
           <Route path="course_reports" element={<CourseSurveillanceReport />} />
           <Route path="live_attendance" element={<LiveAttendancePage />} />
+          <Route path="live_surveillance" element={<SurveillancePage />} />
         </Route>
       </Routes>
     </Router>

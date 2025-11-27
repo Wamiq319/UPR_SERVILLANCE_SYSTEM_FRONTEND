@@ -24,6 +24,11 @@ const SidebarMenus = [
     path: "/admin/live_attendance",
     Icon: BookOpen,
   },
+  {
+    label: "Live Surveillance",
+    path: "/admin/live_surveillance",
+    Icon: BookOpen,
+  },
 ];
 
 const Sidebar = () => {
